@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        #header{
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+            align-items: center;
+        }
+        #wrapper{
+            width: 800px;
+        }
+        #main_content{
+            display: flex;
+            justify-content: space-around;
+        }
+        label{
+            width: 60px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div>
+            {% with messages = get_flashed_messages(category_filter=["recipe"]) %}     <!-- declare a variable called messages -->
+                {% if messages %}                            <!-- check if there are any messages -->
+                    {% for message in messages %}            <!-- loop through the messages -->
+                        <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                    {% endfor %}
+                {% endif %}
+        {% endwith %}
+        </div>
+        <div id="header">
+            <h1>{{user.first_name}}/ Add a New Recipe!</h1>
+            <a href="/home">back to recipes</a>
+            <a href="/logout">logout</a>
+        </div>
+        <div id="main_content">
+        <div id="left">
+            <form action="/create_recipe" method="POST">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name"><br>
+                <label for="decription">Description</label><br>
+                <textarea name="description" id="description" cols="30" rows="10"></textarea><br>
+                <label for="instruction">Instructions</label><br>
+                <textarea name="instruction" id="instruction" cols="30" rows="10"></textarea>
+                
+            </div> 
+                <div id="content">
+                    <label for="date">Date Cooked/Made:</label>
+                    <input type="date" name="created_at" id="created_at"><br>
+                    <label for="under_30">Under 30 minutes</label>
+                    <select name="under_30min" id="under_30min">
+                        <option value="3">Select an option</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                    <button>Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

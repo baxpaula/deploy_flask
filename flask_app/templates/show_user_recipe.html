@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    *{
+        width: 800px;
+    }
+    #header{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    #rec{
+        display: flex;
+    }
+    #under_30min{
+        display: flex;
+        
+    }
+</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="header">
+        <h1>Welcome {{user.first_name}}</h1>
+        <a href="/home">back to recipes</a>
+        <a href="/logout">logout</a>
+    </div>
+    <div id="rec">
+        <h1>{{recipe.name}}</h1>
+        <h3>Posted by{{recipe.user.first_name}}</h3>
+    </div>
+    <h3>Description: {{recipe.description}}</h3>
+    <div id="under_30min">
+    <h3>Under 30 Minutes?</h3>
+    {% if recipe.under_30min == 1%}
+    <p>Yes</p>
+    {% else %}
+    <p>No</p>
+    {% endif %}
+    </div>
+    <h3>Instructions:   {{recipe.instruction}}</h3>
+    <h3>Date Made: {{recipe.created_at.strftime('%Y-%m-%d')}}</h3>
+</body>
+</html>
